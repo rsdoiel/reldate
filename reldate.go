@@ -1,6 +1,11 @@
 /**
  * Generates a date in YYYY-MM-DD format based on a relative time
  * description (e.g. -1 week, +3 years)
+ *
+ * @author R. S. Doiel, <rsdoiel@gmail.com>
+ * copyright (c) 2014
+ * Released under the Simplified BSD License
+ * See: http://opensource.org/licenses/bsd-license.php
  */
 package main
 
