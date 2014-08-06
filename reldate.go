@@ -28,7 +28,11 @@ var (
 )
 
 var Usage = func(exit_code int, msg string) {
-	fmt.Fprintf(os.Stderr, `%s
+    var fh = os.Stderr
+    if exit_code == 0 {
+        fh = os.Stdout
+    }
+	fmt.Fprintf(fh, `%s
  USAGE %s TIME_INCREMENT TIME_UNIT
 
  EXAMPLES
@@ -45,9 +49,11 @@ var Usage = func(exit_code int, msg string) {
 
 `, msg, os.Args[0], os.Args[0], os.Args[0], os.Args[0], os.Args[0])
 
-	flag.PrintDefaults()
+	flag.VisitAll(func (f *flag.Flag) {
+        fmt.Fprintf(fh, "\t-%s\t(defaults to %s) %s\n", f.Name, f.Value, f.Usage)
+    })
 
-	fmt.Fprintf(os.Stderr, `
+	fmt.Fprintf(fh, `
 
  copyright (c) 2014 all rights reserved.
  Released under the Simplified BSD License
