@@ -57,4 +57,7 @@ Will yield
     2014-07-31
 ```
 
+## License
 
+copyright (c) 2014 All rights reserved.
+Released under the [Simplified BSD License](http://opensource.org/licenses/bsd-license.php)
