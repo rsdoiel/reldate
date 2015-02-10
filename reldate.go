@@ -44,9 +44,11 @@ var usage = func(exit_code int, msg string) {
  The Monday in week containing 2015-02-06: %s --from=2015-02-06 Monday
 
  Time increments are a positive or negative integer. Time unit can be
- either day(s), week(s), month(s), or year(s). Weekday names are
- case insentive (e.g. Monday and monday) and can be Sunday, Monday,
- Tuesday, Wednesday, Thursday, Friday or Saturday.
+ either day(s), week(s), month(s), or year(s). Weekday names and are
+ case insentive (e.g. Monday and monday). They can be abbreviated
+ to the first three letters of the name, e.g. Sunday can be Sun, Monday
+ can be Mon, Tuesday can be Tue, Wednesday can be Wed, Thursday can
+ be Thu, Friday can be Fri or Saturday can be Sat.
 
  OPTIONS
 
@@ -150,7 +152,7 @@ func relativeTime(t time.Time, i int, u string) (time.Time, error) {
 	case strings.HasPrefix(u, "year"):
 		return t.AddDate(i, 0, 0), nil
 	}
-	return t, errors.New("Time unit must be day(s), week(s), month(s) or year(s).")
+	return t, errors.New("Time unit must be day(s), week(s), month(s) or year(s) or weekday name.")
 }
 
 func main() {
@@ -169,7 +171,7 @@ func main() {
 	argv := flag.Args()
 
 	if argc < 1 {
-		usage(1, "Missing time increment and units (e.g. +2 days) or weekday name (e.g. Monday).\n")
+		usage(1, "Missing time increment and units (e.g. +2 days) or weekday name (e.g. Monday, Mon).\n")
 	} else if argc > 2 {
 		usage(1, "Too many command line arguments.\n")
 	}
@@ -190,6 +192,6 @@ func main() {
 		unitString = strings.ToLower(argv[0])
 	}
 	t, err := relativeTime(relativeT, timeInc, unitString)
-	assertOk(err, "Time unit should be either day(s), week(s), month(s) or year(s) or a weekday name.\n")
+	assertOk(err, err)
 	fmt.Println(t.Format(yyyymmdd))
 }

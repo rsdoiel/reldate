@@ -73,8 +73,8 @@ will yeild
     2015-02-09
 ```
 
-As that is the Monday of the week containing 2015-02-10. Week day names are spelled out in English but are not case sensitive
-(e.g. Monday, monday).
+As that is the Monday of the week containing 2015-02-10. Weekday names case insensitive and can be the first three letters
+of the English names or full English names (e.g. Monday, monday, Mon, mon).
 
 
 ## License
