@@ -20,18 +20,18 @@ import (
 )
 
 var (
-	help        bool
-	relative_to string
-	relative_t  time.Time
-	time_inc    int
-	time_unit   int
+	help       bool
+	relativeTo string
+	relativeT  time.Time
+	timeInc    int
+	timeUnit   int
 )
 
-var Usage = func(exit_code int, msg string) {
-    var fh = os.Stderr
-    if exit_code == 0 {
-        fh = os.Stdout
-    }
+var usage = func(exit_code int, msg string) {
+	var fh = os.Stderr
+	if exit_code == 0 {
+		fh = os.Stdout
+	}
 	fmt.Fprintf(fh, `%s
  USAGE %s TIME_INCREMENT TIME_UNIT
 
@@ -49,9 +49,9 @@ var Usage = func(exit_code int, msg string) {
 
 `, msg, os.Args[0], os.Args[0], os.Args[0], os.Args[0], os.Args[0])
 
-	flag.VisitAll(func (f *flag.Flag) {
-        fmt.Fprintf(fh, "\t-%s\t(defaults to %s) %s\n", f.Name, f.Value, f.Usage)
-    })
+	flag.VisitAll(func(f *flag.Flag) {
+		fmt.Fprintf(fh, "\t-%s\t(defaults to %s) %s\n", f.Name, f.Value, f.Usage)
+	})
 
 	fmt.Fprintf(fh, `
 
@@ -65,19 +65,19 @@ var Usage = func(exit_code int, msg string) {
 
 func init() {
 	const (
-		relative_to_usage = "Date the relative time is calculated from."
-		help_usage        = "Display this help document."
+		relativeToUsage = "Date the relative time is calculated from."
+		helpUsage       = "Display this help document."
 	)
 
-	flag.StringVar(&relative_to, "from", relative_to, relative_to_usage)
-	flag.StringVar(&relative_to, "f", relative_to, relative_to_usage)
-	flag.BoolVar(&help, "help", help, help_usage)
-	flag.BoolVar(&help, "h", help, help_usage)
+	flag.StringVar(&relativeTo, "from", relativeTo, relativeToUsage)
+	flag.StringVar(&relativeTo, "f", relativeTo, relativeToUsage)
+	flag.BoolVar(&help, "help", help, helpUsage)
+	flag.BoolVar(&help, "h", help, helpUsage)
 }
 
-func assertOk(e error, fail_msg string) {
+func assertOk(e error, failMsg string) {
 	if e != nil {
-		Usage(1, fmt.Sprintf(" %s\n %s\n", fail_msg, e))
+		usage(1, fmt.Sprintf(" %s\n %s\n", failMsg, e))
 	}
 }
 
@@ -104,26 +104,26 @@ func main() {
 	// as time increments.
 	flag.Parse()
 	if help == true {
-		Usage(0, "")
+		usage(0, "")
 	}
 
 	argc := flag.NArg()
 	argv := flag.Args()
 
 	if argc < 2 {
-		Usage(1, "Missing time increment or units.")
+		usage(1, "Missing time increment or units.")
 	} else if argc > 2 {
-		Usage(1, "Too many command line arguments.")
+		usage(1, "Too many command line arguments.")
 	}
 
-	relative_t = time.Now()
-	if relative_to != "" {
-		relative_t, err = time.Parse(yyyymmdd, relative_to)
+	relativeT = time.Now()
+	if relativeTo != "" {
+		relativeT, err = time.Parse(yyyymmdd, relativeTo)
 		assertOk(err, "Cannot parse the from date.")
 	}
-	time_inc, err := strconv.Atoi(argv[0])
+	timeInc, err := strconv.Atoi(argv[0])
 	assertOk(err, "Time increment should be a positive or negative integer")
-	t, err := relativeTime(relative_t, time_inc, argv[1])
+	t, err := relativeTime(relativeT, timeInc, argv[1])
 	assertOk(err, "Time unit should be either day(s), week(s), month(s) or year(s)")
 
 	fmt.Println(t.Format(yyyymmdd))

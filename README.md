@@ -57,6 +57,26 @@ Will yield
     2014-07-31
 ```
 
+## Relative week days
+
+You can calculate a date from a weekday name (e.g. Saturday, Monday, Tuesday) knowning a day (e.g. 2015-02-10 or the current date of the
+week) occuring in a week.  A common case would be wanting to figure out the Monday date of a week containing 2015-02-10. The week is
+presumed to start on Sunday (i.e. 0) and finish with Saturday (e.g. 6).
+
+```
+    reldate --from=2015-02-10 Monday
+```
+
+will yeild
+
+```
+    2015-02-09
+```
+
+As that is the Monday of the week containing 2015-02-10. Week day names are spelled out in English but are not case sensitive
+(e.g. Monday, monday).
+
+
 ## License
 
 copyright (c) 2014 All rights reserved.
