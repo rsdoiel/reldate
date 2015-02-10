@@ -192,6 +192,6 @@ func main() {
 		unitString = strings.ToLower(argv[0])
 	}
 	t, err := relativeTime(relativeT, timeInc, unitString)
-	assertOk(err, err)
+	assertOk(err, err.Error())
 	fmt.Println(t.Format(yyyymmdd))
 }
