@@ -184,7 +184,7 @@ func main() {
 
 	timeInc := 0
 	if argc == 2 {
-		unitString = strings.ToLower(argv[0])
+		unitString = strings.ToLower(argv[1])
 		timeInc, err = strconv.Atoi(argv[0])
 		assertOk(err, "Time increment should be a positive or negative integer.\n")
 	} else {
