@@ -21,3 +21,8 @@ _testmain.go
 
 *.exe
 *.test
+
+#
+# Skip any compiled binaries in bin/*
+#
+bin/*
