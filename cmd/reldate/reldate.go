@@ -10,13 +10,14 @@
 package main
 
 import (
-	reldate "../../"
 	"flag"
 	"fmt"
 	"os"
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/rsdoiel/reldate"
 )
 
 var (
