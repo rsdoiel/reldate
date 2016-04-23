@@ -76,6 +76,14 @@ will yeild
 As that is the Monday of the week containing 2015-02-10. Weekday names case insensitive and can be the first three letters
 of the English names or full English names (e.g. Monday, monday, Mon, mon).
 
+## Installation
+
+_reldate_ can be installed with the *go get* command.
+
+```
+    go get github.com/rsdoiel/reldate/...
+```
+
 
 ## License
 
