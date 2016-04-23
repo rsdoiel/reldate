@@ -2,12 +2,12 @@
 # Simple Makefile
 #
 
-build: reldate.go cmd/reldate/reldate.go
-	go build -o bin/reldate cmd/reldate/reldate.go 
+build: reldate.go cmds/reldate/reldate.go
+	go build -o bin/reldate cmds/reldate/reldate.go 
 
 clean: reldate
 	rm bin/reldate
 
 install: reldate.go
-	go install cmd/reldate/reldate.go
+	go install cmds/reldate/reldate.go
 
