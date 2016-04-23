@@ -1,5 +1,8 @@
-reldate
-=======
+
+[![Go Report Card](http://goreportcard.com/badge/rsdoiel/reldate)](http://goreportcard.com/report/rsdoiel/reldate)
+[![License](https://img.shields.io/badge/License-BSD%202--Clause-blue.svg)](https://opensource.org/licenses/BSD-2-Clause)
+
+# reldate
 
 A small command line utility which returns the relative date in YYYY-MM-DD format. This is helpful
 when scripting various time relationships.
