@@ -2,12 +2,16 @@
 # Simple Makefile
 #
 
-build: reldate.go cmds/reldate/reldate.go
+build:
 	go build -o bin/reldate cmds/reldate/reldate.go 
 
-clean: reldate
-	rm bin/reldate
+clean:
+	if [ -d bin ]; then rm -fR bin; fi
+	if [ -d dist ]; then rm -fR dist; fi
 
-install: reldate.go
-	go install cmds/reldate/reldate.go
+install:
+	env GOBIN=$HOME/bin go install cmds/reldate/reldate.go
+
+release:
+	./mk-release.sh
 
