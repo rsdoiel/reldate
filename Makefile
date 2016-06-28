@@ -10,7 +10,7 @@ clean:
 	if [ -d dist ]; then rm -fR dist; fi
 
 install:
-	env GOBIN=$HOME/bin go install cmds/reldate/reldate.go
+	env GOBIN=$(HOME)/bin go install cmds/reldate/reldate.go
 
 release:
 	./mk-release.sh
