@@ -1,5 +1,7 @@
 #!/bin/bash
 
+TITLE="text: reldate - generate relative dates in YYYY-MM-DD format"
+
 function checkApp() {
     APP_NAME=$(which $1)
     if [ "$APP_NAME" = "" ] && [ ! -f "./bin/$1" ]; then
@@ -26,7 +28,7 @@ function MakePage () {
 
     echo "Rendering $html"
     $APP \
-	"title=text:range -- generating simple integer sequences for shell scripts" \
+	"title=$TITLE" \
         "nav=$nav" \
         "content=$content" \
         page.tmpl > $html
